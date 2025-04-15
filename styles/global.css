@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+* {
+    box-sizing: border-box;
+  
+    font-family: 'Inter', sans-serif;
+  
+  }
+
+  body {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  
+  
+  
+  /* Flip card utilities */
+  .perspective {
+    perspective: 1000px;
+  }
+  
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  
+  /* .backface-hidden {
+    backface-visibility: hidden;
+  } */
+  
+  .card-inner {
+    transition: transform 0.7s;
+    transform-style: preserve-3d;
+    position: relative;
+  }
+  
+  /* .group:hover .card-inner {
+    transform: rotateY(180deg);
+  } */
+  
+  .card-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 1rem;
+    overflow: hidden;
+
+  }
+
+  
+  /* .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 1rem;
+    overflow: hidden;
+  } */
+  
+  /* .card-back {
+    transform: rotateY(180deg);
+  } */
+  
+  @layer utilities {
+    .animate-fade-in-up {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+  
+    .animation-delay {
+      opacity: 0;
+      animation-delay: 0ms;
+    }
+  
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+
+
+
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+
+  
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.infinite-scroll {
+  display: flex;
+  width: calc(200%); /* Double the width for seamless looping */
+  animation: scroll 20s linear infinite; /* Smooth infinite scrolling */
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out;
+}
+
+
+
