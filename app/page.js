@@ -1,14 +1,38 @@
-import Image from "next/image";
 
-export default function Home() {
-  return (
-    
-    <div>
+'use client'
 
-        <h1>hellow world </h1>
+import HomeSlider from "@/app/components/landing/HomeSlider"
 
-    </div>
-  );
+import FurnitureManufacturerSection from "@/app/components/landing/FurnitureManufacturerSection";
+
+import HorizontalSlider from "@/app/components/landing/HorizontalSlider";
+
+import CompanyProfile from "@/app/components/landing/CompanyProfileSection";
+import InfiniteSlider from "@/app/components/landing/InfiniteProductSlider";
+
+import ProductSection from "@/app/components/landing/OurProductSection";
+import FooterSection from "@/app/components/layout/Footer";
+
+import DeliveredProjectsSection from "@/app/components/landing/DeliveredPojectsSection";
+
+export default function LandingPage() {
+
+    return (
+
+        <div className="relative w-screen  no-scrollbar min-h-screen flex flex-col">
+
+            <HomeSlider />
+
+            <FurnitureManufacturerSection/>
+        
+            <CompanyProfile/>
+
+            <ProductSection></ProductSection>
+
+            {/* <DeliveredProjectsSection></DeliveredProjectsSection> */}
+
+        </div>
+    )
+
 }
-
 

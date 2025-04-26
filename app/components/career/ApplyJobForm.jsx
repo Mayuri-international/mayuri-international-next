@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 import { Turnstile } from "@marsidev/react-turnstile";
 
 const ApplyJobForm = () => {
+
+  
   const backend_url = process.env.NEXT_PUBLIC_BACKEND_URL
 
   const siteKey = process.env.NEXT_PUBLIC_SITE_KEY;

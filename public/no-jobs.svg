@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1024" height="1024" fill="#F5F5F5"/>
+  <circle cx="512" cy="350" r="200" fill="#E0E0E0"/>
+  <path d="M362 340c0-83 67-150 150-150s150 67 150 150-67 150-150 150-150-67-150-150z" fill="#BDBDBD"/>
+  <rect x="300" y="580" width="424" height="48" rx="24" fill="#BDBDBD"/>
+  <path d="M400 640h224v36a36 36 0 01-36 36H436a36 36 0 01-36-36v-36z" fill="#9E9E9E"/>
+  <text x="50%" y="800" text-anchor="middle" fill="#757575" font-size="42px" font-weight="bold" font-family="sans-serif">
+    No Jobs Found
+  </text>
+  <text x="50%" y="850" text-anchor="middle" fill="#9E9E9E" font-size="24px" font-family="sans-serif">
+    Please check back later
+  </text>
+</svg>

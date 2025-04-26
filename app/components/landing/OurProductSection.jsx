@@ -1,10 +1,10 @@
-
 'use client'
 
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
 import { useRef } from "react";
+import OverlayBox from "../common/OverlayBox";
 
-import Image from "next/image";
+import { BiSolidLeftArrow,BiSolidRightArrow } from "react-icons/bi";
 
 export const ourProductList = [
   {
@@ -28,22 +28,16 @@ export const ourProductList = [
     description: "Dine in elegance and comfort",
   },
   {
-
     image: "https://www.mayuriinternational.com/images/loose-furniture-sliders/cafe-chair.jpg",
     title: "Cafe Chair",
     description: "Comfort Meets Style in Every Sip",
-
   },
   {
-
     image: "https://www.mayuriinternational.com/images/loose-furniture-sliders/cafe-table.jpg",
     title: "Cafe Table",
     description: "Gather and Savor in Style",
-
   },
-
 ];
-
 
 const ProductSection = () => {
   const scrollRef = useRef(null);
@@ -59,63 +53,37 @@ const ProductSection = () => {
   };
 
   return (
-    <div className="w-full bg-[#F9F9F9] px-4 lg:px-20 py-12 relative">
+    <div className="w-screen bg-[#F9F9F9] py-12">
       {/* Heading */}
       <div className="text-center mb-10">
-        <h2 className="text-3xl font-extrabold uppercase text-[#212529]">
-          Our Products
-        </h2>
+        <h2 className="text-3xl font-extrabold uppercase text-[#212529]">Our Products</h2>
         <p className="text-gray-600 mt-2 text-sm md:text-base">
           Versatile Loose Furniture Solutions Tailored for Every Space in India
         </p>
       </div>
 
+      {/*  */}
+
+
       {/* Carousel */}
-      <div className="relative">
+      <div className="relative w-full">
         {/* Left Arrow */}
         <button
           onClick={() => scroll("left")}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg w-10 h-10 rounded-full flex items-center justify-center hover:scale-105 transition"
+          className="absolute left-0 top-1/2 cursor-pointer -translate-y-1/2 z-10 w-10 h-10 rounded-full flex items-center justify-center"
         >
-          <IoMdArrowDropleft size={24} className="text-gray-700" />
+          <BiSolidLeftArrow className="text-[#212529] hover:text-[#811235]" size={35} />
+
         </button>
 
         {/* Scrollable Cards */}
         <div
           ref={scrollRef}
-          className="flex overflow-x-auto gap-6 scroll-smooth no-scrollbar px-12 md:px-14 lg:px-16"
+          className="overflow-x-auto relative w-full max-w-[95%] flex gap-6 scroll-smooth no-scrollbar px-3 mx-auto"
         >
           {ourProductList.map((product, idx) => (
-            <div
-              key={idx}
-              className="group perspective min-w-[300px] md:min-w-[360px] lg:min-w-[400px] h-[400px] flex-shrink-0"
-            >
-              <div className="card-inner w-full h-full">
-                {/* Front Side */}
-                <div className="card-front bg-white shadow-md">
-                  {/* <img
-                    src={product.image}
-                    alt={product.title}
-                    className="w-full h-full object-cover"
-                  /> */}
-
-                  <Image
-                    src={product.image}
-                    alt={product.title}
-                    className="w-full h-full object-cover"
-                    fill
-                  />
-                  
-                </div>
-
-                {/* Back Side */}
-                <div className="card-back bg-white shadow-md flex flex-col items-center justify-center p-6 text-center">
-                  <h3 className="text-2xl font-bold text-[#212529] mb-2">
-                    {product.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm">{product.description}</p>
-                </div>
-              </div>
+            <div key={idx} className=" max-w-[600px] flex-shrink-0">
+              <OverlayBox title={product.title} desc={product.description} image={product.image} />
             </div>
           ))}
         </div>
@@ -123,9 +91,9 @@ const ProductSection = () => {
         {/* Right Arrow */}
         <button
           onClick={() => scroll("right")}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg w-10 h-10 rounded-full flex items-center justify-center hover:scale-105 transition"
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full flex items-center justify-center"
         >
-          <IoMdArrowDropright size={24} className="text-gray-700" />
+          <BiSolidRightArrow className="text-[#212529] cursor-pointer hover:text-[#811235]" size={35} />
         </button>
       </div>
     </div>
@@ -133,5 +101,3 @@ const ProductSection = () => {
 };
 
 export default ProductSection;
-
-

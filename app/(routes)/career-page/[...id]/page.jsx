@@ -1,21 +1,37 @@
-
 'use client'
 
-import { useQueryClient } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation"; // for Next.js
+import { useDispatch, useSelector } from "react-redux";
+import { fetchJobPostingData } from "@/lib/api";
+import { setJobPostingData } from "@/store/slices/jobPostingSlice";
 
-import ApplyJobForm from "@/components/career/ApplyJobForm";
-
+import ApplyJobForm from "@/app/components/career/ApplyJobForm";
 
 const SpecificJobPosting = () => {
-  const queryClient = useQueryClient();
-  const { jobId } = useParams();
+  const dispatch = useDispatch();
+  const { id } = useParams();
 
-  console.log("Job ID is:", jobId);
+  const jobId = id[0];
+  const jobPostingData = useSelector((state) => state.job.jobPostingData);
+  const [job, setJob] = useState(null);
 
-  // Fetch the cached career data from React Query
-  const cachedJobs = queryClient.getQueryData(["career-data"])?.data || [];
-  const job = cachedJobs.find((job) => job._id === jobId);
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!jobPostingData) {
+        const result = await fetchJobPostingData();
+        dispatch(setJobPostingData(result));
+      }
+    };
+    fetchData();
+  }, [dispatch, jobPostingData]);
+
+  useEffect(() => {
+    if (jobPostingData && jobId) {
+      const foundJob = jobPostingData.find((job) => job._id === jobId);
+      setJob(foundJob || null);
+    }
+  }, [jobPostingData, jobId]);
 
   if (!job) {
     return (
@@ -25,49 +41,33 @@ const SpecificJobPosting = () => {
     );
   }
 
-  console.log("cached jobs", cachedJobs);
-
   return (
     <div className="w-11/12 mx-auto mt-10">
       <h1 className="text-4xl font-bold text-gray-800 mb-6 text-center">
         {job.title}
       </h1>
       <div className="bg-white shadow-lg rounded-lg p-8">
-        {/* Company Information */}
+        {/* Company Info */}
         <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-            About the Company
-          </h2>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-2">About the Company</h2>
           <p className="text-gray-600">{job.company?.about || "No information available."}</p>
         </div>
 
         {/* Job Details */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div>
-            <p className="text-gray-600 text-sm mb-2">
-              <strong>Location:</strong> {job.jobLocationType || "Not specified"}
-            </p>
-            <p className="text-gray-600 text-sm mb-2">
-              <strong>Employment Type:</strong> {job.employmentType || "Full-time"}
-            </p>
-            <p className="text-gray-600 text-sm mb-2">
-              <strong>Salary:</strong> {job.salary || "Not specified"}
-            </p>
+            <p className="text-gray-600 text-sm mb-2"><strong>Location:</strong> {job.jobLocationType || "Not specified"}</p>
+            <p className="text-gray-600 text-sm mb-2"><strong>Employment Type:</strong> {job.employmentType || "Full-time"}</p>
+            <p className="text-gray-600 text-sm mb-2"><strong>Salary:</strong> {job.salary || "Not specified"}</p>
           </div>
           <div>
-            <p className="text-gray-600 text-sm mb-2">
-              <strong>Posted On:</strong> {new Date(job.postedDate).toLocaleDateString() || "N/A"}
-            </p>
-            <p className="text-gray-600 text-sm mb-2">
-              <strong>Valid Until:</strong> {new Date(job.validUntil).toLocaleDateString() || "N/A"}
-            </p>
-            <p className="text-gray-600 text-sm mb-2">
-              <strong>Status:</strong> {job.status || "Active"}
-            </p>
+            <p className="text-gray-600 text-sm mb-2"><strong>Posted On:</strong> {new Date(job.postedDate).toLocaleDateString() || "N/A"}</p>
+            <p className="text-gray-600 text-sm mb-2"><strong>Valid Until:</strong> {new Date(job.validUntil).toLocaleDateString() || "N/A"}</p>
+            <p className="text-gray-600 text-sm mb-2"><strong>Status:</strong> {job.status || "Active"}</p>
           </div>
         </div>
 
-        {/* Job Description */}
+        {/* Description */}
         <div className="mb-6">
           <h2 className="text-2xl font-semibold text-gray-800 mb-2">Job Description</h2>
           <div className="text-gray-600 space-y-2">
@@ -87,7 +87,7 @@ const SpecificJobPosting = () => {
               ? job.responsibilities[0].replace(/\\n/g, "\n").split("\n").map((line, index) => (
                   <li key={index}>{line.trim()}</li>
                 ))
-              : "No responsibilities available."}
+              : <li>No responsibilities available.</li>}
           </ul>
         </div>
 
@@ -99,23 +99,19 @@ const SpecificJobPosting = () => {
               ? job.benefits[0].replace(/\\n/g, "\n").split("\n").map((line, index) => (
                   <li key={index}>{line.trim()}</li>
                 ))
-              : "No benefits available."}
+              : <li>No benefits available.</li>}
           </ul>
         </div>
 
         {/* Application Process */}
         <div className="mb-6">
           <h2 className="text-2xl font-semibold text-gray-800 mb-2">Application Process</h2>
-          <p className="text-gray-600">
-            <strong>Email:</strong> {job.applicationProcess?.contactEmail || "Not provided"}
-          </p>
-          <p className="text-gray-600">
-            <strong>Phone:</strong> {job.applicationProcess?.contactPhone || "Not provided"}
-          </p>
+          <p className="text-gray-600"><strong>Email:</strong> {job.applicationProcess?.contactEmail || "Not provided"}</p>
+          <p className="text-gray-600"><strong>Phone:</strong> {job.applicationProcess?.contactPhone || "Not provided"}</p>
         </div>
       </div>
 
-      <div>
+      <div className="mt-10">
         <ApplyJobForm jobId={job._id} />
       </div>
     </div>
@@ -123,3 +119,6 @@ const SpecificJobPosting = () => {
 };
 
 export default SpecificJobPosting;
+
+
+
