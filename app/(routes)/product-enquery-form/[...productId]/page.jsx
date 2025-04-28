@@ -25,6 +25,9 @@ import { useRef } from "react";
 
 import { useRouter } from "next/navigation";
 
+import B2BFormSubmittingLoader from "@/app/components/loader/TempLoader";
+
+
 const ProductEnqueryForm = () => {
 
   const isSubmittingRef = useRef(false);
@@ -36,6 +39,8 @@ const ProductEnqueryForm = () => {
   const selectedProductData = useSelector((state) => state.product.selectedProduct);
 
   const [token, setToken] = useState("");
+
+  const [loading,setLoading] = useState(false);
 
   const backend_url = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -59,7 +64,8 @@ const ProductEnqueryForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
+    
   } = useForm({
     resolver: zodResolver(schema),
   });
@@ -78,6 +84,8 @@ const ProductEnqueryForm = () => {
 
     try {
 
+      setLoading(true);
+
       const result = await createCustomerQuery({ data, productId: productId[0], token });
       
       toast.success("Product query submitted successfully!");
@@ -93,14 +101,24 @@ const ProductEnqueryForm = () => {
     }
     finally{
 
+      
       setTimeout(()=>{
-
+        
         isSubmittingRef.current = false;
+        setLoading(false);
 
       },5000)
 
     }
   };
+
+  if(loading){
+
+    return (
+
+      <B2BFormSubmittingLoader />
+    )
+  }
 
   return (
 
@@ -140,7 +158,6 @@ const ProductEnqueryForm = () => {
                   </div>
                   <div className="flex flex-col">
 
-                    <h4 className="text-lg font-bold text-gray-800">{selectedProductData.product.name || selectedProductData.name}</h4>
                     <p className="text-sm text-gray-600 mt-2">
                       <strong>Category:</strong> {selectedProductData.categoryName || selectedProductData?.product?.category?.name || selectedProductData?.product?.category || selectedProductData?.category?.name}
                     </p>

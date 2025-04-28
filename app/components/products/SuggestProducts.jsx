@@ -8,6 +8,8 @@ import { cleanAndLowercaseAddSpace } from "@/lib/utils";
 
 import Image from "next/image";
 
+import SkeletonProductCard from "../loader/SkeletonProductCard";
+
 const SuggestedProducts = () => {
     const [products, setProductsData] = useState(null);
     const router = useRouter();
@@ -16,6 +18,8 @@ const SuggestedProducts = () => {
 
     const scrollContainerRef = useRef(null);
     const [selectedProductIndex, setSelectedProductIndex] = useState(null);
+
+    const [loading, setLoading] = useState(true);
 
     const scrollToCenter = (index) => {
         const container = scrollContainerRef.current;
@@ -35,15 +39,55 @@ const SuggestedProducts = () => {
     };
 
     useEffect(() => {
+
         if (!productCode) return;
 
-        const fetchData = async () => {
-            const data = await fetchSuggestedProducts({ code: productCode });
-            setProductsData(data);
+        const fetchData = async () => { 
+
+            try{
+
+                setLoading(true);
+                const data = await fetchSuggestedProducts({ code: productCode });
+                setProductsData(data);
+
+            }catch(error){
+
+                console.log("error is ",error);
+
+                toast.error(error.message);
+            }
+            finally{
+
+                setLoading(false);
+
+            }
+
         };
 
         fetchData();
     }, [productCode]);
+
+    if (loading) {
+        return (
+            <div className="w-full min-h-screen p-8">
+
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
+                    {[...Array(8)].map((_, idx) => (
+                        <SkeletonProductCard key={idx} />
+                    ))}
+                </div>
+
+            </div>
+        );
+    }
+
+    if (!products || products.length === 0) {
+        return (
+            <div className="mt-12 relative w-full text-center text-gray-500">
+                No Suggested Products Found
+            </div>
+        );
+    }
 
     return (
         <div className="mt-12 relative w-full">
@@ -63,11 +107,10 @@ const SuggestedProducts = () => {
                     products.map((product, index) => (
                         <div
                             key={product._id}
-                            className={`flex flex-col items-center justify-start flex-shrink-0 bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 cursor-pointer ${
-                                selectedProductIndex === index
-                                    ? "w-[400px] h-[500px] z-10 transform scale-105"
-                                    : "w-[300px] h-[400px]"
-                            }`}
+                            className={`flex flex-col items-center justify-start flex-shrink-0 bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 cursor-pointer ${selectedProductIndex === index
+                                ? "w-[400px] h-[500px] z-10 transform scale-105"
+                                : "w-[300px] h-[400px]"
+                                }`}
                             onClick={() => scrollToCenter(index)}
                         >
                             {/* Image only */}

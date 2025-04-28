@@ -4,66 +4,41 @@ import { ScrollArea, ScrollBar } from "../../../components/ui/scroll-area";
 
 import Image from "next/image";
 
+import { deliveredProjectsData } from "@/lib/data";
+
+import { useRouter } from "next/navigation";
+
+import { cleanAndLowercaseAddDash } from "@/lib/utils";
+
 export default function HorizontalScrollingWithoutArrow() {
 
-    const works = [
-        {
-            artist: "Ornella Binni",
-            art: "https://images.unsplash.com/photo-1465869185982-5a1a7522cbcb?auto=format&fit=crop&w=300&q=80",
-        },
-        {
-            artist: "Tom Byrom",
-            art: "https://images.unsplash.com/photo-1548516173-3cabfa4607e9?auto=format&fit=crop&w=300&q=80",
-        },
-        {
-            artist: "Vladimir Malyavko",
-            art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
-        },
-        {
-            artist: "Ornella Binni",
-            art: "https://images.unsplash.com/photo-1465869185982-5a1a7522cbcb?auto=format&fit=crop&w=300&q=80",
-        },
-        {
-            artist: "Tom Byrom",
-            art: "https://images.unsplash.com/photo-1548516173-3cabfa4607e9?auto=format&fit=crop&w=300&q=80",
-        },
-        {
-            artist: "Vladimir Malyavko",
-            art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
-        },
-        {
-            artist: "Ornella Binni",
-            art: "https://images.unsplash.com/photo-1465869185982-5a1a7522cbcb?auto=format&fit=crop&w=300&q=80",
-        },
-        {
-            artist: "Tom Byrom",
-            art: "https://images.unsplash.com/photo-1548516173-3cabfa4607e9?auto=format&fit=crop&w=300&q=80",
-        },
-        {
-            artist: "Vladimir Malyavko",
-            art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
-        },
-    ]
+    const router = useRouter();
+
+    function deliveredProjectsClickHandler(name) {
+
+        router.push(`/delivered-projects/${cleanAndLowercaseAddDash(name)}`);
+
+    }
 
     return (
 
         <ScrollArea className="relative w-full  whitespace-nowrap rounded-md border border-gray-200">
             <div className="flex w-full space-x-4 p-4">
-                {works.map((artwork) => (
-                    <figure key={artwork.artist} className="shrink-0">
-                        <div className="overflow-hidden rounded-md">
+                {deliveredProjectsData.map((data) => (
+                    <figure key={data.name} className="shrink-0" onClick={()=>deliveredProjectsClickHandler(data.name)}>
+                        <div className="overflow-hidden rounded-md cursor-pointer">
                             <Image
-                                src={artwork.art}
-                                alt={`Photo by ${artwork.artist}`}
-                                className="aspect-[3/2] h-fit w-fit object-cover"
+                                src={data.image}
+                                alt={`Photo by ${data.name}`}
+                                className="aspect-[3/2] h-fit w-fit object-cover cursor-pointer"
                                 width={300}
                                 height={200}
                             />
                         </div>
-                        <figcaption className="pt-2 text-xs text-muted-foreground">
+                        <figcaption className="pt-2 text-xs text-muted-foreground cursor-pointer">
                             Photo by{" "}
                             <span className="font-semibold text-foreground">
-                                {artwork.artist}
+                                {data.name}
                             </span>
                         </figcaption>
                     </figure>

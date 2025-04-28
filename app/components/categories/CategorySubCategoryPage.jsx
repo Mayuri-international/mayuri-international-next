@@ -39,7 +39,7 @@ const CategoriesSubCategoriesPage = () => {
 
     const preparedData = filteredCategoriesData?.subCategories?.map((data) => ({
         name: data.name,
-        image: data.image?.[0] || "https://lh3.googleusercontent.com/d/1h-BOx4lxyvZYabI6U4mGBQONMZC4YMF6=w1920-h1080",
+        image: data.images[0] || "https://lh3.googleusercontent.com/d/1h-BOx4lxyvZYabI6U4mGBQONMZC4YMF6=w1920-h1080",
         _id: data._id
     })) || [];
 
@@ -91,7 +91,7 @@ const CategoriesSubCategoriesPage = () => {
     if (categoryName && !subCategoryName && !productCode) {
 
         return <CategoryPage categoryName={categoryName} />;
-        
+
     }
 
     if (categoryName && subCategoryName && !productCode) {

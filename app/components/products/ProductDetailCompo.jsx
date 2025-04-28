@@ -17,6 +17,9 @@ import SuggestedProducts from './SuggestProducts';
 import FeaturesSection from '../common/FeaturesSection';
 import toast from 'react-hot-toast';
 
+import LoadingScreen from '../Loader';
+
+
 const ProductDetailPageCard = () => {
     const dispatch = useDispatch();
     const { slug } = useParams();
@@ -42,27 +45,33 @@ const ProductDetailPageCard = () => {
     // 🔁 Fetch product if not available in Redux
     useEffect(() => {
         const loadProduct = async () => {
-            if (!selectedProductData && productCode) {
+            if (productCode) { // no need to check selectedProductData
                 try {
                     setLoading(true);
-                    const data = await fetchProductByCode({ categoryName: categoryName, subCategoryName: subCategoryName, code: productCode });
+                    dispatch(setSelectedProductData(null));
+                    const data = await fetchProductByCode({
+                        categoryName: categoryName,
+                        subCategoryName: subCategoryName,
+                        code: productCode
+                    });
                     dispatch(setSelectedProductData(data));
                 } catch (error) {
                     console.error('Error fetching product by code:', error);
-                    toast.error(error.message)
+                    toast.error(error.message);
                 } finally {
                     setLoading(false);
                 }
             }
         };
         loadProduct();
-    }, [productCode, selectedProductData, dispatch]);
+    }, [productCode, categoryName, subCategoryName, dispatch]);
+
 
     if (loading || !selectedProductData?.product) {
         return (
-            <div className="flex items-center justify-center h-64 text-gray-500">
-                Loading product details...
-            </div>
+
+            <LoadingScreen />
+
         );
     }
 
@@ -104,8 +113,8 @@ const ProductDetailPageCard = () => {
 
                         {/* Product Details */}
                         <div className="w-full md:w-1/2 p-6">
-                            <h1 className="text-3xl font-bold text-gray-800 mb-2 capitalize">{selectedProductData.product.name || selectedProductData.name}</h1>
-                            <p className="text-gray-600 mb-4">{selectedProductData.product.description || selectedProductData.product.description || "No description available."}</p>
+                            {/* <h1 className="text-3xl font-bold text-gray-800 mb-2 capitalize">{selectedProductData.product.name || selectedProductData.name}</h1> */}
+                            {/* <p className="text-gray-600 mb-4">{selectedProductData.product.description || selectedProductData.product.description || "No description available."}</p> */}
                             <ul className="space-y-2 capitalize">
                                 <li><strong>Code:</strong> {selectedProductData.product.code || selectedProductData.code}</li>
                                 <li>
@@ -124,14 +133,14 @@ const ProductDetailPageCard = () => {
 
                             <div className="mt-6 flex flex-wrap gap-4">
                                 <button
-                                    className="px-5 py-2 bg-[#8b1c3c] text-white rounded-md shadow-md hover:bg-[#a52a59] transition-colors duration-300"
+                                    className="px-5 py-2 bg-[#8b1c3c] cursor-pointer text-white rounded-md shadow-md hover:bg-[#a52a59] transition-colors duration-300"
                                     onClick={() => router.push(`/product-enquery-form/${selectedProductData.product._id}`)}
                                 >
                                     📩 Send Enquiry
 
                                 </button>
                                 <button
-                                    className="px-5 py-2 bg-green-600 text-white rounded-md shadow-md hover:bg-green-700 transition-colors duration-300"
+                                    className="px-5 py-2 bg-green-600 cursor-pointer text-white rounded-md shadow-md hover:bg-green-700 transition-colors duration-300"
                                     onClick={handleClick}
                                 >
                                     💬 Chat on WhatsApp

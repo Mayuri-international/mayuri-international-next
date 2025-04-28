@@ -1,101 +1,84 @@
 
-'use client'
 
-import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle, Leaf, Award, Users, Hammer } from "lucide-react";
-import { motion } from "framer-motion";
+import WhyMayuriSubPart from "@/app/components/why-mayuri/SubPart";
 
 const features = [
   {
-    title: "30+ Years of Expertise",
-    icon: <Award className="h-8 w-8 text-primary" />,
+    title: "30+ Years of Custom Furniture Expertise",
     description:
-      "A legacy of excellence in custom furniture manufacturing and design."
+      "With over three decades of industry-leading experience, Mayuri International is a trusted name in premium furniture manufacturing and design, delivering timeless craftsmanship to homes, hotels, and commercial spaces across India."
   },
   {
-    title: "Custom-Built Furniture",
-    icon: <Hammer className="h-8 w-8 text-primary" />,
+    title: "Tailor-Made Furniture for Every Space",
     description:
-      "Tailor-made furniture designed to meet every client's unique needs."
+      "Every furniture piece is customized to your exact needs — dimensions, colors, materials, and functionalities — ensuring the perfect fit for residential, hospitality, or office interiors."
   },
   {
-    title: "Eco-Friendly Materials",
-    icon: <Leaf className="h-8 w-8 text-primary" />,
+    title: "Eco-Friendly & Sustainable Materials",
     description:
-      "Committed to sustainability with environment-friendly raw materials."
+      "Committed to a greener future, we use sustainable wood, eco-friendly laminates, water-based finishes, and recyclable materials in all our furniture manufacturing processes."
   },
   {
-    title: "Award-Winning Designs",
-    icon: <CheckCircle className="h-8 w-8 text-primary" />,
+    title: "Award-Winning Furniture Designs",
     description:
-      "Recognized for innovative, stylish, and functional design solutions."
+      "Recognized nationally for design innovation and functionality, our collections reflect modern trends while honoring timeless craftsmanship traditions."
   },
   {
-    title: "Trusted by Leading Brands",
-    icon: <Users className="h-8 w-8 text-primary" />,
+    title: "Trusted by 1000+ Leading Brands & Institutions",
     description:
-      "Serving 1000+ businesses across hospitality, commercial & residential."
+      "From top hotel chains and educational institutions to luxury homeowners, Mayuri International proudly serves a wide clientele base, delivering reliability, quality, and bespoke solutions."
+  },
+  {
+    title: "State-of-the-Art Manufacturing Infrastructure",
+    description:
+      "Our advanced manufacturing units in Bangalore leverage German CNC machinery, laser cutting technology, and automated polishing lines for unmatched precision and finish quality."
+  },
+  {
+    title: "Premium Quality Assurance & Certifications",
+    description:
+      "We adhere to strict quality control checks at every production stage and ensure ISO-certified standards, guaranteeing furniture that's durable, ergonomic, and superior in build."
+  },
+  {
+    title: "On-Time Delivery with Professional Installation",
+    description:
+      "Our expert logistics and installation teams ensure your custom furniture is delivered and set up safely, securely, and within committed timelines, no matter the project size."
+  },
+  {
+    title: "Innovative Design Consultation Services",
+    description:
+      "Collaborate directly with our in-house design experts to transform your vision into reality, whether you're furnishing luxury villas, cafes, hotels, or corporate offices."
+  },
+  {
+    title: "Customer-Centric Support & Satisfaction Guarantee",
+    description:
+      "At Mayuri International, our journey doesn't end at delivery. We provide post-sales support, warranties, and maintenance tips to ensure lifelong satisfaction with our furniture."
   }
 ];
 
+
 const WhyMayuriSection = () => {
   return (
-    <section className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
-            Why Choose Mayuri International?
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Discover the values, craftsmanship, and excellence that set us apart in the furniture industry.
-          </p>
-        </motion.div>
+    <section className="py-20 bg-white">
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* SEO Hidden Text Section */}
+      <section className="sr-only">
+        <div>
+          <h2>Discover Our Furniture Expertise</h2>
           {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Card className="rounded-2xl shadow-md hover:shadow-xl transition-all h-full">
-                <CardContent className="p-6 flex flex-col items-center text-center">
-                  <div className="mb-4">{feature.icon}</div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm text-gray-600">{feature.description}</p>
-                </CardContent>
-              </Card>
-            </motion.div>
+            <div key={index}>
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
+            </div>
           ))}
         </div>
+      </section>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-16 text-center"
-        >
-          <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-            Ready to Experience Excellence?
-          </h3>
-          <a href="/products">
-            <button className="bg-primary text-white px-6 py-3 rounded-full shadow hover:bg-primary/90 transition-all">
-              Explore Our Products
-            </button>
-          </a>
-        </motion.div>
-      </div>
+      <WhyMayuriSubPart />
+
     </section>
   );
 };
 
 export default WhyMayuriSection;
+
 

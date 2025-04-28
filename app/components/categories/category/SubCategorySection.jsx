@@ -90,7 +90,7 @@ export default function SubCategorySection({ categoryName }) {
                         <SubcategoryBox
                             key={index}
                             label={data.name}
-                            imageSrc={data.iconImage?.url || "https://mayuriinternational.com/images/cane-furniture/gallery-icon/cane-arm-chairs.png"}
+                            imageSrc={data.images[0] || "https://mayuriinternational.com/images/cane-furniture/gallery-icon/cane-arm-chairs.png"}
                             clickHandler={clickHandler}
                         />
                     ))}

@@ -34,11 +34,11 @@ const CompanyProfile = () => {
   }
 
   return (
-    <div className=" w-full px-4 lg:px-20 py-12 bg-[#f5f5f5]">
+    <div className="relative w-full px-4 lg:px-20 py-12 bg-[#f5f5f5]">
       {/* Top Section */}
-      <div className="flex flex-col lg:flex-row justify-between items-start gap-10">
+      <div className="flex flex-col relative w-full lg:flex-row justify-between items-start gap-10">
         {/* Left - Diamond Image */}
-        <div className="relative w-full flex justify-center">
+        <div className="relative w-full flex justify-center lg:max-w-[40%]">
           <div className="transform relative mix-blend-multiply rotate-45 overflow-hidden w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] lg:w-[500px] lg:h-[500px]">
             <Image
               src="https://www.mayuriinternational.com/images/video-icon.png"
@@ -50,7 +50,7 @@ const CompanyProfile = () => {
         </div>
 
         {/* Right - Text Info */}
-        <div className="w-full lg:w-1/2 ">
+        <div className="w-full lg:w-[60%] ">
           {/* Title & Profile Button */}
           <div className="relative w-full">
 
@@ -145,9 +145,9 @@ const CompanyProfile = () => {
 
           </div>
 
-          <div className="py-3 flex flex-col gap-4">
+          <div className="py-3 flex flex-col gap-4 relative w-full">
 
-            <h1 className="text-md text-black uppercase">Delivered Projects : -</h1>
+            <h1 className="text-md text-black uppercase relative w-full">Delivered Projects : -</h1>
 
             <HorizontalScrollingWithoutArrow></HorizontalScrollingWithoutArrow>
 

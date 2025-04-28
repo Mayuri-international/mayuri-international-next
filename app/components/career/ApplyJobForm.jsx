@@ -5,16 +5,17 @@ import { useParams } from "react-router-dom";
 
 import { Turnstile } from "@marsidev/react-turnstile";
 
-const ApplyJobForm = () => {
+import B2BFormSubmittingLoader from "../loader/TempLoader";
 
-  
+const ApplyJobForm = ({jobId}) => {
+
+
   const backend_url = process.env.NEXT_PUBLIC_BACKEND_URL
 
   const siteKey = process.env.NEXT_PUBLIC_SITE_KEY;
 
-  console.log("site key is ",siteKey);
+  console.log("site key is ", siteKey);
 
-  const { jobId } = useParams();
 
   const [formData, setFormData] = useState({
     jobId: jobId,
@@ -51,12 +52,15 @@ const ApplyJobForm = () => {
     setError("");
     setSuccess("");
 
-    console.log("token value is ",token);
+    console.log("token value is ", token);
 
-    console.log("token is ",token);
+    console.log("token is ", token);
 
     // Validation
     if (!formData.jobId || !formData.name || !formData.email || !formData.phoneNo || !formData.resumeFile) {
+
+      console.log(formData.jobId,formData.name ,formData.email,formData.phoneNo,formData.resumeFile)
+
       setError("All fields are required.");
       setLoading(false);
       return;
@@ -70,7 +74,7 @@ const ApplyJobForm = () => {
       formDataToSend.append("phoneNo", formData.phoneNo);
       formDataToSend.append("resumeFile", formData.resumeFile);
 
-      formData.append("turnstileToken",token);
+      formData.append("turnstileToken", token);
 
       const result = await axios.post(`${backend_url}/jobs/apply-to-job`, formDataToSend, {
         headers: {
@@ -91,7 +95,13 @@ const ApplyJobForm = () => {
     } catch (error) {
       setError(error.response?.data?.message || "Something went wrong. Please try again.");
     } finally {
-      setLoading(false);
+
+      setTimeout(() => {
+
+
+        setLoading(false);
+
+      }, 3000);
     }
   };
 

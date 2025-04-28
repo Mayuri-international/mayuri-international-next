@@ -8,22 +8,50 @@ import { setJobPostingData } from "@/store/slices/jobPostingSlice";
 
 import ApplyJobForm from "@/app/components/career/ApplyJobForm";
 
+import B2BFormSubmittingLoader from "@/app/components/loader/TempLoader";
+import toast from "react-hot-toast";
+
 const SpecificJobPosting = () => {
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const { slug } = useParams();
 
-  const jobId = id[0];
+  console.log("slug is ", slug[0]);
+
+  const jobId = slug[0];
+
   const jobPostingData = useSelector((state) => state.job.jobPostingData);
   const [job, setJob] = useState(null);
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
-      if (!jobPostingData) {
-        const result = await fetchJobPostingData();
-        dispatch(setJobPostingData(result));
+
+      try {
+
+        if (!jobPostingData) {
+          const result = await fetchJobPostingData();
+          dispatch(setJobPostingData(result));
+        }
+
+      } catch (error) {
+
+        toast.error(error.message);
+
+      }
+
+      finally {
+
+        setTimeout(() => {
+
+          setLoading(false);
+
+        }, 4000)
+
       }
     };
     fetchData();
+
   }, [dispatch, jobPostingData]);
 
   useEffect(() => {
@@ -32,6 +60,12 @@ const SpecificJobPosting = () => {
       setJob(foundJob || null);
     }
   }, [jobPostingData, jobId]);
+
+  if(loading) {
+
+    return <B2BFormSubmittingLoader />
+
+  }
 
   if (!job) {
     return (
@@ -73,8 +107,8 @@ const SpecificJobPosting = () => {
           <div className="text-gray-600 space-y-2">
             {job.jobDescription
               ? job.jobDescription.replace(/\\n/g, "\n").split("\n").map((line, index) => (
-                  <p key={index}>{line.trim()}</p>
-                ))
+                <p key={index}>{line.trim()}</p>
+              ))
               : "No description available."}
           </div>
         </div>
@@ -85,8 +119,8 @@ const SpecificJobPosting = () => {
           <ul className="list-disc list-inside text-gray-600 space-y-2">
             {job.responsibilities
               ? job.responsibilities[0].replace(/\\n/g, "\n").split("\n").map((line, index) => (
-                  <li key={index}>{line.trim()}</li>
-                ))
+                <li key={index}>{line.trim()}</li>
+              ))
               : <li>No responsibilities available.</li>}
           </ul>
         </div>
@@ -97,8 +131,8 @@ const SpecificJobPosting = () => {
           <ul className="list-disc list-inside text-gray-600 space-y-2">
             {job.benefits
               ? job.benefits[0].replace(/\\n/g, "\n").split("\n").map((line, index) => (
-                  <li key={index}>{line.trim()}</li>
-                ))
+                <li key={index}>{line.trim()}</li>
+              ))
               : <li>No benefits available.</li>}
           </ul>
         </div>
@@ -119,6 +153,4 @@ const SpecificJobPosting = () => {
 };
 
 export default SpecificJobPosting;
-
-
 

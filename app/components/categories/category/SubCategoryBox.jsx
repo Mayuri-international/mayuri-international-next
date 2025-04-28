@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import { cleanAndLowercase } from '@/lib/utils';
+import {cleanAndLowercaseAddDash } from '@/lib/utils';
 
 export default function SubcategoryBox({ imageSrc, label, clickHandler }) {
   return (
@@ -8,7 +8,7 @@ export default function SubcategoryBox({ imageSrc, label, clickHandler }) {
       <div className="w-full flex items-center justify-center border-r-2 border-r-white/55 aspect-square overflow-hidden relative">
         <div
           className="relative w-full h-full cursor-pointer"
-          onClick={() => clickHandler(cleanAndLowercase(label))}
+          onClick={() => clickHandler(cleanAndLowercaseAddDash(label))}
         >
           <Image
             src={imageSrc || ''}

@@ -10,6 +10,7 @@ import DeliveredProjects from "./category/DeliveredProjects";
 import FeaturesSection from "../common/FeaturesSection";
 import CategoryNotFound from "./CategoryNotFound";
 
+
 // ✅ Structured Data Components
 function CollectionPageSchema({ categoryData }) {
   const jsonLd = {

@@ -1,33 +1,41 @@
-
 "use client";
 
 import { motion } from "framer-motion";
+import { Loader2 } from "lucide-react"; // Using premium loader icon
 
 export default function LoadingScreen() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#f9f7f5] text-[#333]">
-      {/* Company Logo or Icon */}
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#f9f7f5] text-[#4a3d35]">
+      
+      {/* Animated Elegant Loader */}
       <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" }}
-        className="mb-6"
+        initial={{ rotate: 0 }}
+        animate={{ rotate: 360 }}
+        transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
+        className="mb-8"
       >
-        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" className="text-[#7c5c46]">
-          <path d="M2 12h20M2 16h20M6 8h12M8 4h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        </svg>
+        <Loader2 size={64} className="text-[#7c5c46] animate-spin" />
       </motion.div>
 
-      {/* Loading Text */}
+      {/* Stylish Text */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}
-        className="text-lg font-medium tracking-wider uppercase"
+        transition={{ duration: 1.2, repeat: Infinity, repeatType: "reverse" }}
+        className="text-xl font-semibold tracking-wide uppercase text-center px-6"
       >
-        Loading your experience...
+        Preparing your premium furniture experience...
+      </motion.div>
+
+      {/* Sub Text */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 1.2, repeat: Infinity, repeatType: "reverse" }}
+        className="mt-2 text-sm text-gray-500"
+      >
+        One moment, styling elegance just for you.
       </motion.div>
     </div>
   );
 }
-

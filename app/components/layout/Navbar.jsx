@@ -235,7 +235,7 @@ const MegaMenuNavbar = ({ catgoriesData }) => {
 
         dispatch(setSelectedCategoryData(tempData));
 
-        router.push(`/categories/${cleanAndLowercaseAddDash(categoryName)}/${cleanAndLowercaseAddDash(link.name)}`);
+        router.push(`/${cleanAndLowercaseAddDash(categoryName)}/${cleanAndLowercaseAddDash(link.name)}`);
     }
 
 
@@ -291,7 +291,7 @@ const MegaMenuNavbar = ({ catgoriesData }) => {
             ];
 
         dispatch(setClickedCategoryData(mappedTaggedSubCategories));
-        router.push(`/categories/${cleanAndLowercaseAddDash(categoryName)}`);
+        router.push(`/${cleanAndLowercaseAddDash(categoryName)}`);
     }
 
 
@@ -359,7 +359,7 @@ const MegaMenuNavbar = ({ catgoriesData }) => {
                             <h3
                                 className="text-sm cursor-pointer uppercase text-[#2b2f32] mb-2 pb-1"
                                 onClick={() => {
-                                    router.push(`/categories/${categoryName}/${group.name}`);
+                                    router.push(`/${categoryName}/${group.name}`);
                                 }}
                             >
                                 {group.tagName}
@@ -557,3 +557,5 @@ const MegaMenuNavbar = ({ catgoriesData }) => {
 };
 
 export default MegaMenuNavbar;
+
+

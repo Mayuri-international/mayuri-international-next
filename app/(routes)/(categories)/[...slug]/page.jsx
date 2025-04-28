@@ -1,3 +1,5 @@
+
+
 import { Metadata } from 'next';
 
 import CategoriesSubCategoriesPage from '@/app/components/categories/CategorySubCategoryPage';
@@ -58,6 +60,8 @@ export async function generateMetadata({ params }) {
     },
   };
 }
+
+
 
 // ⬇️ This simply renders your client-side component
 export default function Page() {
