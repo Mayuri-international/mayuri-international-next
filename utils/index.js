@@ -1,7 +1,7 @@
 
 
 export async function fetchCatalogueData(slug) {
-    const res = await fetch(`http://localhost:4000/api/catalogue/get-specific-category-cataLogue/${slug}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/catalogue/get-specific-category-cataLogue/${slug}`, {
         cache: 'force-cache',
     });
 
@@ -15,7 +15,7 @@ export async function fetchCatalogueData(slug) {
 
 export async function fetchSpecificCategorySubCategoriesData(slug) {
 
-    const res = await fetch(`http://localhost:4000/api/categories/get-all-category-specific-SubCategoriesData/${slug}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/categories/get-all-category-specific-SubCategoriesData/${slug}`, {
         cache: 'reload',
     });
 
