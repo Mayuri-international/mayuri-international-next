@@ -1,6 +1,4 @@
 
-'use client'
-
 import HomeSlider from "@/app/components/landing/HomeSlider"
 
 import FurnitureManufacturerSection from "@/app/components/landing/FurnitureManufacturerSection";
@@ -12,6 +10,8 @@ import InfiniteSlider from "@/app/components/landing/InfiniteProductSlider";
 
 import ProductSection from "@/app/components/landing/OurProductSection";
 import FooterSection from "@/app/components/layout/Footer";
+
+import WhatsAppWidget from "./components/widget/WhatsAppWidget";
 
 export default function LandingPage() {
 

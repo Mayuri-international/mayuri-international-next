@@ -16,7 +16,7 @@ export const productArray = [
     description: "Lounge in Comfort, Style Assured"
   },
   {
-    href: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/images/live-projects/hotels.pdf`,
+    href: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/home-furniture/center-table`,
     imageLink: `https://www.mayuriinternational.com/images/loose-furniture-sliders/center-table.jpg`,
     title: "Center Table",
     description: "Gather Round, Elevate Your Space"

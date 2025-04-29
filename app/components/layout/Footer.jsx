@@ -16,7 +16,7 @@ const FooterSection = () => {
                 Mayuri International
               </h2>
               <p className="text-lg sm:text-xl text-gray-300 font-light">
-                Premium Furniture Manufacturer & Exportera
+                Premium Furniture Manufacturer & Exporter
               </p>
             </div>
 

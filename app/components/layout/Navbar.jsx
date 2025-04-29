@@ -167,23 +167,23 @@ const MegaMenuNavbar = ({ catgoriesData }) => {
 
         }
 
-        
+
         let categoryName;
 
         const filteredCategory = catgoriesData.find((data) => cleanAndLowercase(data.name) == cleanAndLowercase(group.tagName));
 
-        if(!filteredCategory){
+        if (!filteredCategory) {
 
             const tempCategory = catgoriesData.find((data) => data._id == categoryId);
 
             categoryName = tempCategory.name;
         }
-        else{
+        else {
 
             categoryName = group.tagName;
         }
 
-        console.log("updated  category name is ",categoryName);
+        console.log("updated  category name is ", categoryName);
 
         let updatedCategoryId;
 
@@ -225,6 +225,8 @@ const MegaMenuNavbar = ({ catgoriesData }) => {
         dispatch(setSelectedCategoryData(tempData));
 
         router.push(`/${cleanAndLowercaseAddDash(categoryName)}/${cleanAndLowercaseAddDash(link.name)}`);
+
+        setActiveMenu(null);
     }
 
 
@@ -334,39 +336,53 @@ const MegaMenuNavbar = ({ catgoriesData }) => {
 
                     {/*  */}
 
-                    <FurnitureVideoSection/>
+                    <FurnitureVideoSection />
 
                 </div>
+
 
                 {/* Mega Menu Panel */}
                 <div
-                    className={`absolute top-[100%] z-[999] w-screen right-28 left-0 max-w-[100%] max-h-[500px] overflow-y-scroll bg-[#F2F2F2] border border-gray-200 shadow-xl grid grid-cols-5 gap-6 p-6 transition-all duration-300 ease-in-out
-        ${activeMenu ? "opacity-100 visible translate-y-0 scale-100" : "opacity-0 invisible -translate-y-2 scale-95 pointer-events-none"}`}
+                    className={`absolute top-[100%] z-[999] w-screen right-28 left-0 max-w-[100%] max-h-[500px] overflow-y-scroll bg-[#F2F2F2] border border-gray-200 shadow-xl grid grid-cols-6 gap-2 p-6 transition-all duration-300 ease-in-out
+    ${activeMenu ? "opacity-100 visible translate-y-0 scale-100" : "opacity-0 invisible -translate-y-2 scale-95 pointer-events-none"}`}
                 >
-                    {groupedCategories && groupedCategories.map((group, index) => (
-                        <div key={index} className="">
-                            <h3
-                                className="text-sm cursor-pointer uppercase text-[#2b2f32] mb-2 pb-1"
-                                onClick={() => {
-                                    router.push(`/${categoryName}/${group.name}`);
-                                }}
+                    {groupedCategories && groupedCategories.map((group, index) => {
+                        const isMetal = group.tagName.toLowerCase() === "metal-furniture";
+                        return (
+                            <div
+                                key={index}
+                                className={`${isMetal ? "absolute left-auto right-auto w-auto min-w-[200px]" : "w-full"} relative`}
+                                style={isMetal ? { gridColumn: "span 1", top: 0 } : {}}
                             >
-                                {group.tagName}
-                            </h3>
-                            <ul className="space-y-1">
-                                {group.subCategories.map((link, i) => (
-                                    <li
-                                        key={i}
-                                        className="text-black font-medium text-sm capitalize cursor-pointer px-4 py-2 rounded-b-md hover:text-[#58151c] hover:bg-[#EFEBEC]"
-                                        onClick={() => subCategoryClickHandler(link, group)}
+                                {/* Hide tagName only for 'metal-furniture' */}
+                                {!isMetal && (
+                                    <h3
+                                        className="text-sm cursor-pointer uppercase text-[#2b2f32] font-medium mb-2 pb-1 px-3"
+                                        onClick={() => {
+                                            router.push(`/${categoryName}/${group.name}`);
+                                        }}
                                     >
-                                        <p>{link.name}</p>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
+                                        {group.tagName}
+                                    </h3>
+                                )}
+
+                                <ul className="space-y-1">
+                                    {group.subCategories.map((link, i) => (
+                                        <li
+                                            key={i}
+                                            className="text-black font-medium text-sm capitalize cursor-pointer py-2 px-3 rounded-b-md hover:text-[#58151c] hover:bg-[#EFEBEC]"
+                                            onClick={() => subCategoryClickHandler(link, group)}
+                                        >
+                                            <p>{cleanAndLowercaseAddSpace(link.name)}</p>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        );
+                    })}
+
                 </div>
+
 
                 {/* Catalogue Dropdown */}
                 <div

@@ -62,7 +62,7 @@ export const metadata = {
     facebook: "c4r308uxf4jzk62inhf3exf3qrtpge",
   },
   icons: {
-    icon: "/images/favicon.png", // make sure the path is correct
+    icon: 'https://mayuriinternational.com/images/favicon.png',
   },
 };
 
