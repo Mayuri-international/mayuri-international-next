@@ -23,7 +23,6 @@ import Link from "next/link";
 
 import Image from "next/image";
 
-
 import { Sheet, SheetDescription, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 
 import { useRef, useEffect } from "react";
