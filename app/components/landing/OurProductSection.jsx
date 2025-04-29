@@ -6,41 +6,52 @@ import OverlayBox from "../common/OverlayBox";
 
 import { BiSolidLeftArrow,BiSolidRightArrow } from "react-icons/bi";
 
-export const ourProductList = [
+import { useRouter } from "next/navigation";
+
+export const productArray = [
   {
-    image: "https://www.mayuriinternational.com/images/loose-furniture-sliders/bar-stools.jpg",
-    title: "Bar Stools",
-    description: "Raising the Bar on comfort and style",
+    href: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/home-furniture/lounge-chair`,
+    imageLink: `https://www.mayuriinternational.com/images/loose-furniture-sliders/lounge-chair.jpg`,
+    title: "Lounge Chairs",
+    description: "Lounge in Comfort, Style Assured"
   },
   {
-    image: "https://www.mayuriinternational.com/images/loose-furniture-sliders/center-table.jpg",
+    href: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/images/live-projects/hotels.pdf`,
+    imageLink: `https://www.mayuriinternational.com/images/loose-furniture-sliders/center-table.jpg`,
     title: "Center Table",
-    description: "Gather Round and Elevate your space",
+    description: "Gather Round, Elevate Your Space"
   },
   {
-    image: "https://www.mayuriinternational.com/images/loose-furniture-sliders/beds.jpg",
-    title: "Sofa",
-    description: "Relax in comfort with stylish seating",
-  },
-  {
-    image: "/landing/products/table.png",
-    title: "Dining Table",
-    description: "Dine in elegance and comfort",
-  },
-  {
-    image: "https://www.mayuriinternational.com/images/loose-furniture-sliders/cafe-chair.jpg",
+    href: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/office-furniture/cafe-chairs`,
+    imageLink: `https://www.mayuriinternational.com/images/loose-furniture-sliders/cafe-chair.jpg`,
     title: "Cafe Chair",
-    description: "Comfort Meets Style in Every Sip",
+    description: "Sit, Sip, and Savor the Moment"
   },
   {
-    image: "https://www.mayuriinternational.com/images/loose-furniture-sliders/cafe-table.jpg",
+    href: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/office-furniture/cafe-tables`,
+    imageLink: `https://www.mayuriinternational.com/images/loose-furniture-sliders/cafe-table.jpg`,
     title: "Cafe Table",
-    description: "Gather and Savor in Style",
+    description: "Where Every Sip Sparks Conversation"
   },
+  {
+    href: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/hotel-furniture/bar-stools`,
+    imageLink: `https://www.mayuriinternational.com/images/loose-furniture-sliders/bar-stools.jpg`,
+    title: "Bar Stools",
+    description: "Raising the Bar on Comfort and Style"
+  },
+  {
+    href: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/home-furniture/sofa-set`,
+    imageLink: `https://www.mayuriinternational.com/images/loose-furniture-sliders/beds.jpg`,
+    title: "Sofa",
+    description: "Relax in Style, Unwind with Comfort"
+  }
 ];
+
 
 const ProductSection = () => {
   const scrollRef = useRef(null);
+  
+  const router = useRouter();
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -51,6 +62,12 @@ const ProductSection = () => {
       });
     }
   };
+
+  function clickHandler(link){
+
+    router.push(link);
+
+  }
 
   return (
     <div className="w-screen bg-[#F9F9F9] py-12">
@@ -81,9 +98,9 @@ const ProductSection = () => {
           ref={scrollRef}
           className="overflow-x-auto relative w-full max-w-[95%] flex gap-6 scroll-smooth no-scrollbar px-3 mx-auto"
         >
-          {ourProductList.map((product, idx) => (
-            <div key={idx} className=" max-w-[600px] flex-shrink-0">
-              <OverlayBox title={product.title} desc={product.description} image={product.image} />
+          {productArray.map((product, idx) => (
+            <div key={idx} className=" max-w-[600px] cursor-pointer flex-shrink-0" onClick={()=> clickHandler(product.href)}>
+              <OverlayBox title={product.title} desc={product.description} image={product.imageLink} />
             </div>
           ))}
         </div>

@@ -121,8 +121,8 @@ export default function WhyMayuriSubPart() {
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
                     Ready to Transform Your Space with Mayuri International?
                 </h2>
-                <a href="/products" aria-label="View Mayuri International's Furniture Collections">
-                    <button className="bg-primary text-white px-8 py-4 rounded-full shadow hover:bg-primary/90 transition-all text-lg font-semibold">
+                <a href="/" aria-label="View Mayuri International's Furniture Collections">
+                    <button className="bg-primary text-black cursor-pointer px-8 py-4 rounded-full shadow hover:bg-primary/90 transition-all text-lg font-semibold">
                         Explore Our Collections
                     </button>
                 </a>

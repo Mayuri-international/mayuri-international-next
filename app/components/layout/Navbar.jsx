@@ -328,7 +328,7 @@ const MegaMenuNavbar = ({ catgoriesData }) => {
                             className="relative py-4 cursor-pointer flex gap-1 justify-center items-center"
                             onMouseEnter={CatalogueMouseEnterHandler}
                         >
-                            <p className="text-md text-[#2b2f32] capitalize">Catalogue</p>
+                            <p className="text-md text-black capitalize">Catalogue</p>
                         </li>
                     </ul>
 

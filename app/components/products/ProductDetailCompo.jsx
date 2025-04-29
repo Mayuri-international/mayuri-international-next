@@ -19,6 +19,7 @@ import toast from 'react-hot-toast';
 
 import LoadingScreen from '../Loader';
 
+import { cleanAndLowercase } from '@/lib/utils';
 
 const ProductDetailPageCard = () => {
     const dispatch = useDispatch();
@@ -31,14 +32,12 @@ const ProductDetailPageCard = () => {
 
     const productCode = slug?.[2];
 
-    const phoneNumber = process.env.NEXT_PUBLIC_MAYURI_PHONENO;
-
     const selectedProductData = useSelector(state => state.product.selectedProduct);
     const [loading, setLoading] = useState(false);
 
 
     const handleClick = () => {
-        window.open(`https://wa.me/${phoneNumber}`, "_blank");
+        window.open(`https://wa.me/${cleanAndLowercase(process.env.NEXT_PUBLIC_COMPANY_PHONE_NO)}`, "_blank");
     };
 
 
@@ -112,7 +111,7 @@ const ProductDetailPageCard = () => {
                         </div>
 
                         {/* Product Details */}
-                        <div className="w-full md:w-1/2 p-6">
+                        <div className="w-full md:w-1/2 h-full p-6 flex flex-col self-start">
                             {/* <h1 className="text-3xl font-bold text-gray-800 mb-2 capitalize">{selectedProductData.product.name || selectedProductData.name}</h1> */}
                             {/* <p className="text-gray-600 mb-4">{selectedProductData.product.description || selectedProductData.product.description || "No description available."}</p> */}
                             <ul className="space-y-2 capitalize">
@@ -147,6 +146,7 @@ const ProductDetailPageCard = () => {
                                 </button>
                             </div>
                         </div>
+
                     </div>
 
                 </div>
