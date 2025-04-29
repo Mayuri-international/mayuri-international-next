@@ -14,9 +14,7 @@ import toast from "react-hot-toast";
 const SpecificJobPosting = () => {
   const dispatch = useDispatch();
   const { slug } = useParams();
-
-  console.log("slug is ", slug[0]);
-
+  
   const jobId = slug[0];
 
   const jobPostingData = useSelector((state) => state.job.jobPostingData);

@@ -13,7 +13,6 @@ export default function SpecificSubProjectImages() {
         (item) => cleanAndLowercase(item.name) === cleanAndLowercase(slug[0])
     );
 
-    console.log("slug name is at sub project images  ",cleanAndLowercase(slug[1]))
 
     const subProject = projectCategory?.subProjects.find(
         (item) => cleanAndLowercase(item.projectName) === cleanAndLowercase(slug[1])

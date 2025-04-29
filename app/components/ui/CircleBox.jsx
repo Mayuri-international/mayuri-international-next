@@ -11,10 +11,6 @@ import { useEffect } from "react";
 export default function CircleBox({ image, name, currentSubCategory,clickHandler }) {
 
 
-  console.log("Current subCategory at circle box is ", currentSubCategory);
-
-  console.log("name at circle is ", name);
-
   let isActive = false;
 
   if (currentSubCategory && cleanAndLowercase(currentSubCategory) == cleanAndLowercase(name)) {

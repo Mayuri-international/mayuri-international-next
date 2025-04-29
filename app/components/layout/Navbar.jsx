@@ -153,15 +153,6 @@ const MegaMenuNavbar = ({ catgoriesData }) => {
 
     function subCategoryClickHandler(link, group, actaulCategoryId) {
 
-
-        console.log("actaulCategoryId is ", actaulCategoryId);
-
-        console.log("group is ", group);
-
-        console.log("link is ", link);
-
-        console.log("activeMenu is ", activeMenu);
-
         let categoryId;
 
         if (actaulCategoryId) {
@@ -181,13 +172,9 @@ const MegaMenuNavbar = ({ catgoriesData }) => {
 
         const filteredCategory = catgoriesData.find((data) => cleanAndLowercase(data.name) == cleanAndLowercase(group.tagName));
 
-        console.log("filteredCategory is ", filteredCategory);
-
         if(!filteredCategory){
 
             const tempCategory = catgoriesData.find((data) => data._id == categoryId);
-
-            console.log("temp category is ", tempCategory);
 
             categoryName = tempCategory.name;
         }
@@ -195,6 +182,8 @@ const MegaMenuNavbar = ({ catgoriesData }) => {
 
             categoryName = group.tagName;
         }
+
+        console.log("updated  category name is ",categoryName);
 
         let updatedCategoryId;
 
@@ -211,7 +200,7 @@ const MegaMenuNavbar = ({ catgoriesData }) => {
 
         else {
 
-            categoryName = activeMenu.categoryName;
+            // categoryName = activeMenu.categoryName;
 
             updatedCategoryId = categoryId;
 

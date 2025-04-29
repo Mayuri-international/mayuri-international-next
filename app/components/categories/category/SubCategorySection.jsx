@@ -19,8 +19,6 @@ export default function SubCategorySection({ categoryName }) {
 
     const categoryData = useSelector((state)=>state.navbarCategory.data);
 
-    console.log("navbar category data ",categoryData);
-
     // This useEffect listens to changes in categoryName and pathname
     useEffect(() => {
         
@@ -40,7 +38,6 @@ export default function SubCategorySection({ categoryName }) {
 
                     // Fetch subcategories data based on categoryName
                     const data = await fetchSpecificCategorySubCategoriesData(categoryName);
-                    console.log('Subcategory data:', data);
                     setSubCategoryData(data?.subCategories || []);
                     setError(null);
 

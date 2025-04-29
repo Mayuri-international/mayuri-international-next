@@ -60,7 +60,6 @@ function BreadcrumbSchema({ categoryData }) {
 
 // 🟡 Main Category Page Component
 export function CategoryPage({ categoryName }) {
-  console.log("category name is ", categoryName);
 
   const categoryData = furnitureCategoriesData.find(
     (cat) => cleanAndLowercase(cat.categoryName) === cleanAndLowercase(categoryName)
@@ -102,10 +101,10 @@ export function CategoryPage({ categoryName }) {
       </div>
 
       {/* ✅ Delivered Projects */}
-      <DeliveredProjects />
+      <DeliveredProjects currentCategory = {categoryName}/>
 
       {/* ✅ Features Section */}
-      <div className="mt-40">
+      <div className="">
         <FeaturesSection />
       </div>
     </div>

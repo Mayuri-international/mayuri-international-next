@@ -1,7 +1,5 @@
 
 
-
-
 export async function fetchCatalogueData(slug) {
     const res = await fetch(`http://localhost:4000/api/catalogue/get-specific-category-cataLogue/${slug}`, {
         cache: 'force-cache',

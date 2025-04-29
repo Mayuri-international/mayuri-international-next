@@ -38,7 +38,7 @@ const FurnitureManufacturerSection = ({ products }) => {
 
   const clickHandler = (name) => {
     const updatedName = cleanAndLowercaseAddDash(name.replace(/Catalogue/gi, "")).trim();
-    router.push(`/categories/${updatedName}`);
+    router.push(`/${updatedName}`);
   };
 
   return (

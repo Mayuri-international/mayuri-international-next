@@ -104,7 +104,7 @@ const CategoriesSubCategoriesPage = () => {
                 <div className="w-screen min-h-screen bg-white">
                     <div className="relative w-full h-full">
                         <HorizontalSlider preparedData={preparedData} currentSubCategory={subCategoryName} clickHandler={(name) => {
-                            router.push(`/categories/${categoryName}/${cleanAndLowercaseAddDash(name)}`);
+                            router.push(`/${categoryName}/${cleanAndLowercaseAddDash(name)}`);
                         }} />
                     </div>
 

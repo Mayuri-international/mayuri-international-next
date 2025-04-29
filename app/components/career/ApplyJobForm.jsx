@@ -14,8 +14,6 @@ const ApplyJobForm = ({jobId}) => {
 
   const siteKey = process.env.NEXT_PUBLIC_SITE_KEY;
 
-  console.log("site key is ", siteKey);
-
 
   const [formData, setFormData] = useState({
     jobId: jobId,
@@ -52,14 +50,9 @@ const ApplyJobForm = ({jobId}) => {
     setError("");
     setSuccess("");
 
-    console.log("token value is ", token);
-
-    console.log("token is ", token);
-
     // Validation
     if (!formData.jobId || !formData.name || !formData.email || !formData.phoneNo || !formData.resumeFile) {
 
-      console.log(formData.jobId,formData.name ,formData.email,formData.phoneNo,formData.resumeFile)
 
       setError("All fields are required.");
       setLoading(false);
@@ -177,7 +170,6 @@ const ApplyJobForm = ({jobId}) => {
             siteKey={siteKey}
             onSuccess={(data) => {
 
-              console.log("token is ", token);
               setToken(data);
             }}
           />

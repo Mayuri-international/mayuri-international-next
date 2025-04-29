@@ -95,7 +95,6 @@ const ProductEnqueryForm = () => {
       setToken(""); // Clear the Turnstile token as well
 
     } catch (error) {
-      console.log("error is ", error);
 
       toast.error(error.message);
     }
@@ -273,7 +272,7 @@ const ProductEnqueryForm = () => {
         </div>
 
         <div>
-          {/* <FeaturesSection /> */}
+          <FeaturesSection />
         </div>
       </div>
 

@@ -15,8 +15,6 @@ const ProductComponent = ({ subcategoryName, productUrl }) => {
     setSelected(true);
     const currentPath = pathname; // e.g., /categories/furniture
 
-    console.log("path name is ",pathname);
-
     router.push(`${currentPath}/${subcategoryName}`);
 
   };

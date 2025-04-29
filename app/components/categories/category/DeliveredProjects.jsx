@@ -6,29 +6,21 @@ import SquareBox from "../../common/SquareBox";
 
 import HorizontalSlider from "../../landing/HorizontalSlider";
 
-export default function DeliveredProjects() {
+import { specificCategoryDeliveredProjectsData } from "@/lib/data";
 
-    const images = [
-        { name: "Home Furniture", image: "https://mayuriinternational.com/images/home-furniture-gallery/sofa-set-1.jpg" },
-        { name: "Home Furniture", image: "https://mayuriinternational.com/images/home-furniture-gallery/sofa-set-2.jpg" },
-        { name: "Home Furniture", image: "https://mayuriinternational.com/images/home-furniture-gallery/sofa-set-3.jpg" },
-        { name: "Home Furniture", image: "https://mayuriinternational.com/images/home-furniture-gallery/sofa-set-4.jpg" },
-        { name: "Home Furniture", image: "https://mayuriinternational.com/images/home-furniture-gallery/sofa-set-5.jpg" },
-        { name: "Home Furniture", image: "https://mayuriinternational.com/images/home-furniture-gallery/sofa-set-6.jpg" },
-        { name: "Home Furniture", image: "https://mayuriinternational.com/images/home-furniture-gallery/sofa-set-7.jpg" },
-        { name: "Home Furniture", image: "https://mayuriinternational.com/images/home-furniture-gallery/sofa-set-8.jpg" },
-        { name: "Home Furniture", image: "https://mayuriinternational.com/images/home-furniture-gallery/sofa-set-9.jpg" },
-        { name: "Home Furniture", image: "https://mayuriinternational.com/images/home-furniture-gallery/sofa-set-10.jpg" },
-        { name: "Home Furniture", image: "https://mayuriinternational.com/images/home-furniture-gallery/sofa-set-11.jpg" },
-        { name: "Home Furniture", image: "https://mayuriinternational.com/images/home-furniture-gallery/sofa-set-12.jpg" },
-        { name: "Home Furniture", image: "https://mayuriinternational.com/images/home-furniture-gallery/sofa-set-13.jpg" },
-        { name: "Home Furniture", image: "https://mayuriinternational.com/images/home-furniture-gallery/sofa-set-14.jpg" },
-        { name: "Home Furniture", image: "https://mayuriinternational.com/images/home-furniture-gallery/sofa-set-15.jpg" }
-    ];
+import { cleanAndLowercase,cleanAndLowercaseAddSpace } from "@/lib/utils";
 
+export default function DeliveredProjects({currentCategory}) {
 
-    console.log("images are ", images);
+    const filteredData = specificCategoryDeliveredProjectsData.find((item)=>cleanAndLowercase(item.name) === cleanAndLowercase(currentCategory));
 
+    const preparedData = filteredData.images.map((data)=>{
+
+        return {
+            name: cleanAndLowercaseAddSpace(currentCategory),
+            image: data,
+        }
+    })
 
     return (
 
@@ -50,7 +42,7 @@ export default function DeliveredProjects() {
 
             </div> */}
 
-            <HorizontalSlider preparedData={images} boxType="square"></HorizontalSlider>
+            <HorizontalSlider preparedData={preparedData} boxType="square"></HorizontalSlider>
 
         </div>
     )

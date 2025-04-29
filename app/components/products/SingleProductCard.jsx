@@ -12,12 +12,6 @@ const SingleProductCard = ({ product, subCategoryName, categoryName }) => {
   const pathname = usePathname();
   const dispatch = useDispatch();
 
-  console.log("product is ", product);
-
-  console.log("sub category name is ", subCategoryName);
-
-  console.log("category name is ", categoryName);
-
   const imageUrl = product.images?.[0]?.replace(/\\/g, "/") || "/placeholder.jpg";
 
   const handleClick = () => {

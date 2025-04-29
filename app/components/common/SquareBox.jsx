@@ -46,33 +46,33 @@ export default function SquareBox({ image, name }) {
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-xs transition-all">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm transition-all">
           <div
             ref={modalRef}
-            className="relative bg-white/90 rounded-2xl shadow-2xl p-6 w-full max-w-5xl mx-4 animate-fadeIn h-[40vh] sm:h-[90vh]"
+            className="relative bg-transparent p-4 w-full max-w-5xl mx-4 animate-fadeIn"
           >
-
-            <div className="relative w-full h-[28vh] sm:h-[70vh] rounded-lg overflow-hidden">
+            <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] rounded-lg overflow-hidden">
               <Image
                 src={image}
                 alt={name}
                 fill
-                className="object-cover transition duration-300 ease-in-out rounded-lg"
+                className="object-contain transition duration-300 ease-in-out rounded-lg"
               />
             </div>
 
-            <p className="text-center mt-6 text-base sm:text-lg font-semibold text-gray-800 tracking-wider uppercase">
+            <p className="text-center mt-6 text-base sm:text-lg font-semibold text-white tracking-wider uppercase">
               #{name}
             </p>
           </div>
         </div>
       )}
 
+
       {/* Optional animation */}
       <style jsx>{`
         @keyframes fadeIn {
           from {
-            opacity: 0;
+            opacity: 0;sub
             transform: scale(0.95);
           }
           to {

@@ -52,8 +52,6 @@ const SuggestedProducts = () => {
 
             }catch(error){
 
-                console.log("error is ",error);
-
                 toast.error(error.message);
             }
             finally{

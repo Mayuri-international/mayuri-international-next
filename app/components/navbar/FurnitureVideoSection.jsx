@@ -35,7 +35,7 @@ export default function FurnitureVideoSection() {
     return (
 
         <DropdownMenu className="rounded-full">
-            <DropdownMenuTrigger>
+            <DropdownMenuTrigger className="rounded-full">
                 <div
                     className="hidden md:flex items-center gap-2 p-2 px-4 rounded-full cursor-pointer font-medium text-white text-base bg-[#a52a59] hover:bg-[#8d234b] transition-all shadow-md"
                     onClick={() => {
@@ -47,7 +47,7 @@ export default function FurnitureVideoSection() {
                 </div>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent className="bg-white w-64 mt-2 rounded-xl shadow-lg overflow-hidden">
+            <DropdownMenuContent className="bg-[#F2F2F2] w-64 mt-2 rounded-xl shadow-lg overflow-hidden">
                 {furnitureVideoDropDownn.map((data, idx) => (
                     <DropdownMenuItem
                         key={idx}

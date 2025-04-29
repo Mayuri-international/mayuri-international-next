@@ -33,7 +33,7 @@ const CategoryNotFound = () => {
           </button>
 
           <button
-            onClick={() => router.push('/categories')}
+            onClick={() => router.push('/home-furniture')}
             className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-black text-black rounded-full hover:bg-black hover:text-white transition"
           >
             Browse Categories
