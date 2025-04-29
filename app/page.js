@@ -13,8 +13,6 @@ import InfiniteSlider from "@/app/components/landing/InfiniteProductSlider";
 import ProductSection from "@/app/components/landing/OurProductSection";
 import FooterSection from "@/app/components/layout/Footer";
 
-import DeliveredProjectsSection from "@/app/components/landing/DeliveredPojectsSection";
-
 export default function LandingPage() {
 
     return (
@@ -28,8 +26,6 @@ export default function LandingPage() {
             <CompanyProfile/>
 
             <ProductSection></ProductSection>
-
-            {/* <DeliveredProjectsSection></DeliveredProjectsSection> */}
 
         </div>
     )
