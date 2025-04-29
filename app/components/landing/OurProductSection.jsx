@@ -10,37 +10,37 @@ import { useRouter } from "next/navigation";
 
 export const productArray = [
   {
-    href: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/home-furniture/lounge-chair`,
+    href: `/home-furniture/lounge-chair`,
     imageLink: `https://www.mayuriinternational.com/images/loose-furniture-sliders/lounge-chair.jpg`,
     title: "Lounge Chairs",
     description: "Lounge in Comfort, Style Assured"
   },
   {
-    href: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/home-furniture/center-table`,
+    href: `/home-furniture/center-table`,
     imageLink: `https://www.mayuriinternational.com/images/loose-furniture-sliders/center-table.jpg`,
     title: "Center Table",
     description: "Gather Round, Elevate Your Space"
   },
   {
-    href: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/office-furniture/cafe-chairs`,
+    href: `/office-furniture/cafe-chairs`,
     imageLink: `https://www.mayuriinternational.com/images/loose-furniture-sliders/cafe-chair.jpg`,
     title: "Cafe Chair",
     description: "Sit, Sip, and Savor the Moment"
   },
   {
-    href: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/office-furniture/cafe-tables`,
+    href: `/office-furniture/cafe-tables`,
     imageLink: `https://www.mayuriinternational.com/images/loose-furniture-sliders/cafe-table.jpg`,
     title: "Cafe Table",
     description: "Where Every Sip Sparks Conversation"
   },
   {
-    href: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/hotel-furniture/bar-stools`,
+    href: `/hotel-furniture/bar-stools`,
     imageLink: `https://www.mayuriinternational.com/images/loose-furniture-sliders/bar-stools.jpg`,
     title: "Bar Stools",
     description: "Raising the Bar on Comfort and Style"
   },
   {
-    href: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/home-furniture/sofa-set`,
+    href: `/home-furniture/sofa-set`,
     imageLink: `https://www.mayuriinternational.com/images/loose-furniture-sliders/beds.jpg`,
     title: "Sofa",
     description: "Relax in Style, Unwind with Comfort"
